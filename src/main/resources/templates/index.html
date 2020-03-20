@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments::head">
+</head>
+<body>
+    <div th:replace="fragments::header"></div>
+    <div th:replace="fragments::navBar"></div>
+<h1 th:text="${pageTitle}">title</h1>
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+    <div th:replace="fragments::footer"></div>
+</body>
+</html>
