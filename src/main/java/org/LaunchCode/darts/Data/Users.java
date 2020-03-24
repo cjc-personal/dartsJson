@@ -4,6 +4,8 @@ import org.LaunchCode.darts.Model.Player;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +45,20 @@ public class Users {
             try {
                 File file = new File ("src/main/java/org/LaunchCode/darts/Data/users.txt");
                 Scanner fileReader = new Scanner(file);
+
+                try {
+                    Scanner backupCreator = new Scanner(file);
+                    PrintWriter backup = new PrintWriter("src/main/java/org/LaunchCode/darts/Data/usersBackup.txt");
+                    while(backupCreator.hasNextLine()) {
+                        backup.println(backupCreator.nextLine());
+                    }
+                    backup.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
                 while (fileReader.hasNextLine()) {
                     String data = fileReader.nextLine();
                     String[] dataArray = data.split(",");
@@ -59,18 +75,27 @@ public class Users {
                         } catch (NumberFormatException e) {
                             gamesWon = 0;
                         }
-                        Player player = new Player(dataArray[0], gamesWon, gamesPlayed);
-                        Users.add(player);
+                        Users.add(new Player(dataArray[0], gamesPlayed, gamesWon));
                     } else {
-                        Player player = new Player(dataArray[0]);
-                        Users.add(player);
+                        Users.add(new Player(dataArray[0]));
                     }
                     dataLoaded = true;
                 }
+                fileReader.close();
             } catch (FileNotFoundException e) {
 
             }
         }
+    }
+
+
+    public static void updateData() {
+
+
+
+
+
+
     }
 
 

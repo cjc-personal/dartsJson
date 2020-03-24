@@ -16,16 +16,15 @@ public class Player {
     }
 
     public Player(String name, Integer gamesPlayed, Integer gamesWon) {
-        super();
+        this.id=nextId;
         this.name = name;
         this.gamesPlayed = gamesPlayed;
         this.gamesWon = gamesWon;
+        nextId++;
     }
 
     public Player(String name) {
-        super();
-        this.gamesPlayed = 0;
-        this.gamesWon = 0;
+        this(name, 0 , 0);
     }
 
 
