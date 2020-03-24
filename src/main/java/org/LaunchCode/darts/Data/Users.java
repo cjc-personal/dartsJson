@@ -90,12 +90,17 @@ public class Users {
 
 
     public static void updateData() {
+        if(dataLoaded) {
+            try {
+                PrintWriter file = new PrintWriter ("src/main/java/org/LaunchCode/darts/Data/users.txt");
+                for(Player player : Users.getAll()) {
+                    file.println(player.getName() + "," + player.getGamesPlayed() + "," + player.getGamesWon());
+                }
+                file.close();
+            } catch (IOException e) {
 
-
-
-
-
-
+            }
+        }
     }
 
 

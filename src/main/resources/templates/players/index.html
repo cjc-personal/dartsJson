@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments::head">
+</head>
+<body>
+<header th:replace="fragments::header"></header>
+<nav th:replace="fragments::navBar"></nav>
+
+<th:block th:each="player : ${players}">
+    <p th:text="${player.name}"></p>
+    <p th:text="${player.gamesPlayed}"></p>
+    <p th:text="${player.gamesWon}"></p>
+</th:block>
+
+
+
+
+</body>
+</html>

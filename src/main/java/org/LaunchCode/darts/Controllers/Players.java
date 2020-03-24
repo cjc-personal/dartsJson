@@ -7,18 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("game")
-public class Game {
+@RequestMapping("players")
+public class Players {
 
     @GetMapping
-    public String displayGame (Model model) {
-        model.addAttribute("pageTitle", "Darts");
-        model.addAttribute("tabTitle", "Darts-Game");
+    public String index(Model model){
+        model.addAttribute("pageTitle", "Players");
+        model.addAttribute("tabTitle", "Darts-Players");
         model.addAttribute("players", Users.getAll());
-        return "game/index";
+        return "players/index";
     }
-
-
 
 
 
