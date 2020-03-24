@@ -11,38 +11,11 @@ import java.util.Scanner;
 
 public class Users {
     private static Map<Integer, Player> players= new HashMap<>();
-    private Boolean dataLoaded = false;
-
-
-
-    public void loadData () {
-        try {
-            File file = new File ("users.txt")
-            Scanner fileReader = new Scanner(file);
-            while (fileReader.hasNextLine()) {
-                String data = fileReader.nextLine();
-                String[] dataArray = data.split(",");
-                if(dataArray.length > 2) {
-                    Player player = new Player (dataArray[0],Integer.parseInt(dataArray[1]),Integer.parseInt(dataArray[2]));
-                    players.add(player);
-                } else {
-                    Player player = new Player (dataArray[0]);
+    private static Boolean dataLoaded = false;
 
 
 
 
-            }
-        } catch (FileNotFoundException e) {
-
-        }
-
-
-
-
-
-        }
-
-    }
 
 
     public static Collection<Player> getAll() {
@@ -65,40 +38,41 @@ public class Users {
 
 
 
-    public void loadData () {
+    public static void loadData() {
         if(!dataLoaded){
             try {
-                File file = new File ("users.txt")
+                File file = new File ("users.txt");
                 Scanner fileReader = new Scanner(file);
                 while (fileReader.hasNextLine()) {
                     String data = fileReader.nextLine();
                     String[] dataArray = data.split(",");
-                    if(dataArray.length > 2) {
+                    if (dataArray.length > 2) {
                         Integer gamesPlayed;
                         Integer gamesWon;
-                        try  {
+                        try {
                             gamesPlayed = Integer.parseInt(dataArray[1]);
                         } catch (NumberFormatException e) {
                             gamesPlayed = 0;
                         }
-                        try  {
+                        try {
                             gamesWon = Integer.parseInt(dataArray[2]);
                         } catch (NumberFormatException e) {
                             gamesWon = 0;
                         }
-                        Player player = new Player (dataArray[0], gamesWon, gamesPlayed);
+                        Player player = new Player(dataArray[0], gamesWon, gamesPlayed);
                         Users.add(player);
                     } else {
-                        Player player = new Player (dataArray[0]);
+                        Player player = new Player(dataArray[0]);
                         Users.add(player);
                     }
                     dataLoaded = true;
-                } catch (FileNotFoundException e) {
-
                 }
+            } catch (FileNotFoundException e) {
+
             }
         }
     }
+
 
 
    /* private JSONObject userData;

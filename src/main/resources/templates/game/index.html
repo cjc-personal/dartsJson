@@ -3,9 +3,12 @@
 <head th:replace="fragments::head">
 </head>
 <body>
-<header th:replace="fragments::header"></header>
-<nav th:replace="fragments::navBar"></nav>
+    <header th:replace="fragments::header"></header>
+    <nav th:replace="fragments::navBar"></nav>
 
+    <div th:each="player : ${players}">
+        <p th:text="player.name"></p>
+    </div>
 
 
 
