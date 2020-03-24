@@ -18,6 +18,10 @@ public class Game {
         return "game/index";
     }
 
+    //need to have a choose number of players
+    //need to have choose player(in order of play order)
+
+
 
 
 

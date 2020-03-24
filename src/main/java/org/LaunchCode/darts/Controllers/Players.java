@@ -18,6 +18,10 @@ public class Players {
         return "players/index";
     }
 
+    //need to have a edit for current players
+    //need to have a create for new players
+
+
 
 
 
