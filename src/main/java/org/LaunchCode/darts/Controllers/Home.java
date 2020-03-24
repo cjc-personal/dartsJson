@@ -10,7 +10,7 @@ public class Home {
 
     @RequestMapping
     public String displayHomePage (Model model) {
-        model.addAttribute("pageTitle", "this is my page title");
+        model.addAttribute("pageTitle", "Darts");
         model.addAttribute("tabTitle", "Darts-Home");
         return "index";
     }
