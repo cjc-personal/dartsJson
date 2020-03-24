@@ -41,7 +41,7 @@ public class Users {
     public static void loadData() {
         if(!dataLoaded){
             try {
-                File file = new File ("users.txt");
+                File file = new File ("src/main/java/org/LaunchCode/darts/Data/users.txt");
                 Scanner fileReader = new Scanner(file);
                 while (fileReader.hasNextLine()) {
                     String data = fileReader.nextLine();

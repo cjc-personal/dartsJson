@@ -6,9 +6,11 @@
     <header th:replace="fragments::header"></header>
     <nav th:replace="fragments::navBar"></nav>
 
-    <div th:each="player : ${players}">
-        <p th:text="player.name"></p>
-    </div>
+    <th:block th:each="player : ${players}">
+        <p th:text="${player.name}"></p>
+        <p th:text="${player.gamesWon}"></p>
+        <p th:text="${player.gamesPlayed}"></p>
+    </th:block>
 
 
 
