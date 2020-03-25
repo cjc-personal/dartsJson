@@ -6,7 +6,7 @@
 <header th:replace="fragments::header"></header>
 <nav th:replace="fragments::navBar"></nav>
 
-
+<p th:if="${error}" th:text="${error}"></p>
 
 
 
@@ -14,14 +14,12 @@
 <table>
     <tr>
         <th>Player</th>
-        <th>Games Played</th>
-        <th>Games Won</th>
+        <th>Score</th>
     </tr>
     <th:block th:each="player : ${players}">
         <tr>
             <td th:text="${player.name}"></td>
-            <td th:text="${player.gamesPlayed}"></td>
-            <td th:text="${player.gamesWon}"></td>
+            <td th:text="${player.score}"></td>
         </tr>
     </th:block>
 

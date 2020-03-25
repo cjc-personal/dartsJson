@@ -9,6 +9,7 @@ public class Player {
     private String name;
     private Integer gamesPlayed;
     private Integer gamesWon;
+    private Integer score;
 
     public Player(){
         this.id= nextId;
@@ -57,6 +58,13 @@ public class Player {
         this.gamesWon = gamesWon;
     }
 
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
 
     @Override
     public String toString() {

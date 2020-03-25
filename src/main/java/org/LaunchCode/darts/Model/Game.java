@@ -6,6 +6,7 @@ import java.util.List;
 public class Game {
     private int numberOfPlayers = 0;
     private List<Player> playersPlaying = new ArrayList<>();
+    private int roundCount;
 
     public void Game () {}
     public void Game (int numberOfPlayers) {
@@ -33,6 +34,14 @@ public class Game {
         this.playersPlaying = playersPlaying;
     }
 
+    public void setRoundCount(int roundCount) {
+        this.roundCount = roundCount;
+    }
+
+    public int getRoundCount() {
+        return roundCount;
+    }
+
     public Boolean isPlayersPlayingFull() {
         if(playersPlaying.size() == numberOfPlayers) {
             return true;
@@ -53,5 +62,15 @@ public class Game {
         if(playersPlaying.contains(player)) {
             playersPlaying.remove(player);
         }
+    }
+
+    public void setPlayerBeginningScore (int beginningScore) {
+        for(Player player : playersPlaying) {
+            player.setScore(beginningScore);
+        }
+    }
+
+    public void increaseRoundCount () {
+        roundCount++;
     }
 }

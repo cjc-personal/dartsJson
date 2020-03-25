@@ -36,6 +36,7 @@ public class GameController {
     @PostMapping("choosePlayers")
     public String choosePlayersOrder (@RequestParam int numberOfPlayers, Model model) {
         newGame.setNumberOfPlayers(numberOfPlayers);
+        newGame.setRoundCount(0);
         model.addAttribute("pageTitle", "New Game");
         model.addAttribute("tabTitle", "Darts-New Game");
         model.addAttribute("players", Users.getAll());
@@ -44,14 +45,38 @@ public class GameController {
     }
 
     @PostMapping("gameOn")
-    public String gamePlaying (@RequestParam Player player1,
-                               @RequestParam Player player2,
+    public String gamePlaying (@RequestParam(required = false) Player player1,
+                               @RequestParam(required = false) Player player2,
                                @RequestParam(required = false) Player player3,
                                @RequestParam(required = false) Player player4,
                                Model model) {
 
+        if(newGame.getNumberOfPlayers() > newGame.getPlayersPlaying().size()) {
+            newGame.getPlayersPlaying().removeAll(newGame.getPlayersPlaying());
+            if(newGame.getNumberOfPlayers()>=2) {
+                newGame.addPlayer(player1);
+                newGame.addPlayer(player2);
+            }
+            if(newGame.getNumberOfPlayers()>=3) {
+                newGame.addPlayer(player3);
+            }
+            if(newGame.getNumberOfPlayers()==4) {
+                newGame.addPlayer(player4);
+            }
+            if (newGame.getNumberOfPlayers()==newGame.getPlayersPlaying().size()) {
+                newGame.setPlayerBeginningScore(301);
+                newGame.increaseRoundCount();
+            }
+        }
+        if(newGame.getRoundCount()>=1) {
 
+        } else {
+            model.addAttribute("error","There was an error");
+        }
 
+        model.addAttribute("pageTitle", "Game");
+        model.addAttribute("tabTitle", "Darts-Game");
+        model.addAttribute("players", newGame.getPlayersPlaying());
 
         return "game/gameOn";
     }

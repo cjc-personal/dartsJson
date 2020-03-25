@@ -10,28 +10,28 @@
         <label> Player 1:
             <select name="player1">
                 <th:block th:each="player : ${players}">
-                    <option value="${player.id}" th:text="${player.name}"></option>
+                    <option th:value="${player}" th:text="${player.name}"></option>
                 </th:block>
             </select>
         </label>
         <label> Player 2:
             <select name="player2">
                 <th:block th:each="player : ${players}">
-                    <option value="${player.id}" th:text="${player.name}"></option>
+                    <option th:value="${player}" th:text="${player.name}"></option>
                 </th:block>
             </select>
         </label>
         <label th:if="${newGame.numberOfPlayers>=3}"> Player 3:
             <select name="player3">
                 <th:block th:each="player : ${players}">
-                    <option value="${player.id}" th:text="${player.name}"></option>
+                    <option th:value="${player}" th:text="${player.name}"></option>
                 </th:block>
             </select>
         </label>
         <label th:if="${newGame.numberOfPlayers==4}"> Player 4:
             <select name="player4">
                 <th:block th:each="player : ${players}">
-                    <option value="${player.id}" th:text="${player.name}"></option>
+                    <option th:value="${player}" th:text="${player.name}"></option>
                 </th:block>
             </select>
         </label>
