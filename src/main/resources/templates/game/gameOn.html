@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments::head">
+</head>
+<body>
+<header th:replace="fragments::header"></header>
+<nav th:replace="fragments::navBar"></nav>
+
+
+
+
+
+
+<table>
+    <tr>
+        <th>Player</th>
+        <th>Games Played</th>
+        <th>Games Won</th>
+    </tr>
+    <th:block th:each="player : ${players}">
+        <tr>
+            <td th:text="${player.name}"></td>
+            <td th:text="${player.gamesPlayed}"></td>
+            <td th:text="${player.gamesWon}"></td>
+        </tr>
+    </th:block>
+
+
+
+
+</body>
+</html>

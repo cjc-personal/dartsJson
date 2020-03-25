@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("players")
-public class Players {
+public class PlayersController {
 
     @GetMapping
     public String index(Model model){

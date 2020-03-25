@@ -6,11 +6,34 @@
     <header th:replace="fragments::header"></header>
     <nav th:replace="fragments::navBar"></nav>
 
-    <th:block th:each="player : ${players}">
-        <p th:text="${player.name}"></p>
-        <p th:text="${player.gamesWon}"></p>
-        <p th:text="${player.gamesPlayed}"></p>
-    </th:block>
+    <form action="choosePlayers" method="post">
+        <label>Select Number of players:
+            <select name="numberOfPlayers">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </label>
+        <input type="submit" />
+        
+    </form>
+    
+    
+    
+    
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Games Played</th>
+            <th>Games Won</th>
+        </tr>
+        <th:block th:each="player : ${players}">
+            <tr>
+                <td th:text="${player.name}"></td>
+                <td th:text="${player.gamesPlayed}"></td>
+                <td th:text="${player.gamesWon}"></td>
+            </tr>
+        </th:block>
 
 
 
