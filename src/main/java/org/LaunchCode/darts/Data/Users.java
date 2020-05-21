@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class Users {
-    private static Map<Integer, Player> players= new HashMap<>();
+    private static Map<Integer, Player> players = new HashMap<>();
     private static Boolean dataLoaded = false;
 
 
