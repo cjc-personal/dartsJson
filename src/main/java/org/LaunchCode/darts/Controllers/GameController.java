@@ -2,7 +2,6 @@ package org.LaunchCode.darts.Controllers;
 
 import org.LaunchCode.darts.Data.Users;
 import org.LaunchCode.darts.Model.Game;
-import org.LaunchCode.darts.Model.Player;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,35 +32,42 @@ public class GameController {
         return "redirect: game/choosePlayers";
     }*/
 
-    @PostMapping("choosePlayers")
-    public String choosePlayersOrder (@RequestParam int numberOfPlayers, Model model) {
+
+    @PostMapping("numOfPlayers")
+    public String choosePlayersOrder (@RequestParam int numberOfPlayers) {
         newGame.setNumberOfPlayers(numberOfPlayers);
         newGame.setRoundCount(0);
+
+        return "redirect:choosePlayers";
+    }
+    @GetMapping("choosePlayers")
+    public String settingUpPlayers(Model model){
         model.addAttribute("pageTitle", "New Game");
         model.addAttribute("tabTitle", "Darts-New Game");
         model.addAttribute("players", Users.getAll());
         model.addAttribute("newGame", newGame);
-       return "game/choosePlayers";
+        return "game/choosePlayers";
     }
 
-    @PostMapping("gameOn")
-    public String gamePlaying (@RequestParam(required = false) Player player1,
-                               @RequestParam(required = false) Player player2,
-                               @RequestParam(required = false) Player player3,
-                               @RequestParam(required = false) Player player4,
+    @PostMapping("choosePlayers")
+    public String gamePlaying (@RequestParam Integer player1,
+                               @RequestParam(required = false) Integer player2,
+                               @RequestParam(required = false) Integer player3,
+                               @RequestParam(required = false) Integer player4,
                                Model model) {
 
         if(newGame.getNumberOfPlayers() > newGame.getPlayersPlaying().size()) {
             newGame.getPlayersPlaying().removeAll(newGame.getPlayersPlaying());
             if(newGame.getNumberOfPlayers()>=2) {
-                newGame.addPlayer(player1);
-                newGame.addPlayer(player2);
+
+                newGame.addPlayer(Users.getById(player1));
+                newGame.addPlayer(Users.getById(player2));
             }
             if(newGame.getNumberOfPlayers()>=3) {
-                newGame.addPlayer(player3);
+                newGame.addPlayer(Users.getById(player3));
             }
             if(newGame.getNumberOfPlayers()==4) {
-                newGame.addPlayer(player4);
+                newGame.addPlayer(Users.getById(player4));
             }
             if (newGame.getNumberOfPlayers()==newGame.getPlayersPlaying().size()) {
                 newGame.setPlayerBeginningScore(301);
@@ -72,14 +78,22 @@ public class GameController {
 
         } else {
             model.addAttribute("error","There was an error");
+            return "game/choosePlayers";
         }
 
+
+        return "redirect:../game/gameOn";
+    }
+
+    @GetMapping("gameOn")
+    public String gameTime(Model model){
         model.addAttribute("pageTitle", "Game");
         model.addAttribute("tabTitle", "Darts-Game");
         model.addAttribute("players", newGame.getPlayersPlaying());
 
         return "game/gameOn";
     }
+
 
 
     //need to have a choose number of players

@@ -66,12 +66,7 @@ public class Player {
         this.score = score;
     }
 
-    @Override
-    public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                '}';
-    }
+
 
 
     @Override
